@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <import type="android.text.TextUtils" />
+
+        <import type="com.nexters.fullstack.presentaion.viewmodel.LabelOutAppViewModel" />
+
+        <import type="com.nexters.fullstack.presentaion.viewmodel.LabelOutAppViewModel.ViewState" />
+
+        <variable
+            name="vm"
+            type="com.nexters.fullstack.presentaion.viewmodel.LabelOutAppViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_whole"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/depth3">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:paddingLeft="@dimen/padding_default"
+            android:paddingRight="@dimen/padding_default"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_cancel"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/ic_baseline_close_24"
+                android:visibility="@{vm.state().viewState == ViewState.MY_LABEL ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/ic_baseline_chevron_left_24"
+                android:visibility="@{vm.state().viewState == ViewState.MY_LABEL ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/do_labelling"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/b1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_done"
+                android:layout_width="@dimen/icon_touch"
+                android:layout_height="@dimen/icon_touch"
+                android:enabled="@{!(vm.state().selectedLabels == null || vm.state().selectedLabels.size() == 0)}"
+                android:gravity="center"
+                android:text="@string/done"
+                android:textColor="@color/lebeling_complete_btn_color"
+                android:textSize="@dimen/b1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/container_coordinator"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container_toolbar">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/container_appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:paddingLeft="@dimen/padding_default"
+                android:paddingRight="@dimen/padding_default"
+                android:stateListAnimator="@null">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/container_collapsing"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:minHeight="@dimen/input_search_height"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/container_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/container_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/padding_default"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:padding="0.5dp"
+                            android:background="@drawable/bg_image_border">
+
+                            <ImageView
+                                android:id="@+id/iv_screenshot"
+                                android:layout_width="@dimen/ss_small_width"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_image_border">
+                            </ImageView>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/container_input_search"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/input_search_height"
+                            android:layout_marginTop="@dimen/spacing_40"
+                            android:background="@drawable/bg_search_bar"
+                            android:paddingLeft="@dimen/spacing_10"
+                            android:paddingRight="@dimen/spacing_10"
+                            app:layout_constraintTop_toBottomOf="@id/container_image">
+
+                            <ImageView
+                                android:id="@+id/iv_search"
+                                android:layout_width="@dimen/icon_mini"
+                                android:layout_height="@dimen/icon_mini"
+                                android:src="@drawable/ic_icon_search"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                            </ImageView>
+
+                            <EditText
+                                android:id="@+id/et_search"
+                                style="@style/EditTextStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/spacing_8"
+                                android:background="@android:color/transparent"
+                                android:hint="@string/placeholder_label_search"
+                                android:imeOptions="actionDone"
+                                android:inputType="text"
+                                android:text="@={vm.state().searchKeyword}"
+                                android:textColor="@color/def_primary"
+                                android:textColorHint="@color/edittext_hint"
+                                android:textSize="@dimen/b1"
+                                android:theme="@style/EditTextStyle"
+                                app:layout_constraintLeft_toRightOf="@id/iv_search"
+                                app:layout_constraintRight_toLeftOf="@id/iv_clear">
+
+                            </EditText>
+
+                            <ImageView
+                                android:id="@+id/iv_clear"
+                                android:layout_width="@dimen/icon_micro"
+                                android:layout_height="@dimen/icon_micro"
+                                android:src="@drawable/ic_cancel"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:visibility="@{TextUtils.isEmpty(vm.state().searchKeyword) ? View.GONE : View.VISIBLE}">
+                            </ImageView>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/padding_default"
+                android:paddingTop="@dimen/padding_default"
+                android:paddingRight="@dimen/padding_default"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_selected_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/depth4"
+            android:padding="@dimen/padding_default"
+            android:visibility="@{(vm.state().selectedLabels == null || vm.state().selectedLabels.size() == 0 || vm.state().viewState != ViewState.MY_LABEL) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/tv_selected_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selected_label"
+                android:textColor="@color/def_secondary"
+                android:textSize="@dimen/b2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_8"
+                android:text="@{vm.state().selectedLabels == null ? null : String.valueOf(vm.state().selectedLabels.size())}"
+                android:textColor="@color/key_active"
+                android:textSize="@dimen/b2"
+                app:layout_constraintLeft_toRightOf="@id/tv_selected_label"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_selected_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/tv_selected_label">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

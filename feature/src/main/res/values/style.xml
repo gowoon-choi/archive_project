@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--   Rounded Bottom Sheet Dialog    -->
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet_dialog</item>
+    </style>
+
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
+    <!--    iOS Bottom Sheet Dialog   -->
+    <style name="BottomSheetiOS" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet_ios_dialog</item>
+    </style>
+
+    <style name="iOSBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheetiOS</item>
+        <item name="android:layout_marginStart">@dimen/spacing_mini</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_mini</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_mini</item>
+    </style>
+
+    <style name="iOSBottomSheetDialogTheme" parent="iOSBottomSheetDialog" >
+        <item name="android:statusBarColor" tools:targetApi="l">@color/transparent</item>
+    </style>
+</resources>

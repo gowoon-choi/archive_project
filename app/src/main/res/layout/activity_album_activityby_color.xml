@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.nexters.fullstack.util.ColorUtil" />
+
+        <variable
+            name="vm"
+            type="com.nexters.fullstack.presentaion.viewmodel.AlbumViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/depth_4"
+            tools:context=".ui.activity.AlbumActivityByColor">
+
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                app:elevation="0dp">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/depth_4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <FrameLayout
+                            android:id="@+id/close"
+                            android:layout_width="50dp"
+                            android:layout_height="0dp"
+                            android:onClick="@{() -> vm.finish()}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:src="@{vm.state().isSelect ? @drawable/ic_baseline_close_24 : @drawable/ic_baseline_chevron_left_24}" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:gravity="start|center"
+                            android:text="@{vm.state().title}"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+                            app:layout_constraintStart_toEndOf="@+id/close"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="라벨" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.6" />
+
+                        <FrameLayout
+                            android:layout_width="50dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tv_select_image"
+                                setLabelActiveColor="@{vm.state().label.color}"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:includeFontPadding="false"
+                                android:onClick="@{()->vm.clickOption()}"
+                                android:text="@string/selection"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:visibility="@{vm.state().showEmptyView || vm.state().isSelect ? View.GONE : View.VISIBLE, default = visible}"
+                                tools:textColor="@color/white" />
+
+                            <ImageView
+                                enabled="@{vm.state().isEnableDeleteButton}"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?selectableItemBackground"
+                                android:gravity="center"
+                                android:onClick="@{()->vm.delete()}"
+                                android:scaleType="center"
+                                android:src="@drawable/ic_delete_white"
+                                android:visibility="@{vm.state().showEmptyView || vm.state().isSelect ? View.VISIBLE : View.GONE, default = gone}" />
+                        </FrameLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/categories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal"
+                        android:visibility="@{vm.state().isSelect ? View.GONE : View.VISIBLE, default = visible}">
+
+                        <TextView
+                            android:id="@+id/recentlyButton"
+                            setLabelTabColor="@{vm.state().selectRecently}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:onClick="@{()->vm.clickRecentlyTab()}"
+                            android:paddingStart="8dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="3dp"
+                            android:text="최신순"
+                            android:textColor="@color/secondary"
+                            android:textSize="@dimen/b2" />
+
+                        <TextView
+                            android:id="@+id/oldestButton"
+                            setLabelTabColor="@{vm.state().isSelectOldest}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:onClick="@{()->vm.clickOldestTab()}"
+                            android:paddingStart="8dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="3dp"
+                            android:text="오래된순"
+                            android:textColor="@color/secondary"
+                            android:textSize="@dimen/b2" />
+
+                        <TextView
+                            android:id="@+id/frequentlyButton"
+                            setLabelTabColor="@{vm.state().isSelectFrequently}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{()->vm.clickFrequentlyTab()}"
+                            android:paddingStart="8dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="3dp"
+                            android:text="자주본순"
+                            android:textColor="@color/secondary"
+                            android:textSize="@dimen/b2" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:paddingStart="13dp"
+                        android:paddingTop="21dp"
+                        android:paddingEnd="13dp"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="3" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:background="@color/depth4"
+                android:orientation="vertical"
+                android:visibility="@{vm.state().showEmptyView ? View.VISIBLE : View.GONE, default = visible}"
+                tools:visibility="gone">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="156dp"
+                    android:src="@drawable/ic_ico_empty_screenshot" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="38dp"
+                    android:text="스크린샷이 없습니다."
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/h3"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:text="해당 라벨에 스크린샷을\n추가해보세요."
+                    android:textColor="@color/font2"
+                    android:textSize="@dimen/b1" />
+
+                <TextView
+                    android:layout_width="160dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="60dp"
+                    android:background="@drawable/bg_album_add_screenshot"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:onClick="@{() -> vm.clickAddScreenShot()}"
+                    android:text="스크린샷 추가하기"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/b1" />
+            </LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

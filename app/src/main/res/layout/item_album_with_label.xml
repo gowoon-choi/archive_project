@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="labelingImage"
+            type="com.nexters.fullstack.presentaion.model.LabelingImage" />
+
+        <variable
+            name="image"
+            type="com.nexters.fullstack.domain.entity.FileImageEntity" />
+
+        <variable
+            name="event"
+            type="com.nexters.fullstack.ui.adapter.listener.ItemClickListener" />
+
+        <variable
+            name="delegate"
+            type="com.nexters.fullstack.ui.adapter.listener.OnClickItemDelegate" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/album"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> delegate.onClickItem(labelingImage)}">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/thumbnail"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            app:cardCornerRadius="@dimen/spacing_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:background="@color/depth_3"
+                app:localImage="@{image.originUrl}"
+                tools:src="@mipmap/ic_launcher" />
+
+            <FrameLayout
+                android:id="@+id/info_more"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end|top"
+                android:layout_marginTop="@dimen/spacing_5"
+                android:layout_marginEnd="@dimen/spacing_5"
+                android:onClick="@{() -> event.onClick(labelingImage.domainLabel)}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_ico_more" />
+            </FrameLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@drawable/bg_album_title"
+            android:padding="@dimen/spacing_normal"
+            android:text="@{labelingImage.domainLabel.text}"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@+id/thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/thumbnail" />
+
+        <TextView
+            android:id="@+id/image_size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:gravity="start"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/b3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/thumbnail"
+            app:layout_constraintStart_toStartOf="@+id/thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/label"
+            tools:text="n개" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

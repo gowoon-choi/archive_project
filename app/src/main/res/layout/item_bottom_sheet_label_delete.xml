@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.nexters.fullstack.presentaion.model.bottomsheet.BottomSheetItem" />
+
+        <variable
+            name="onClickEvent"
+            type="com.nexters.fullstack.ui.adapter.listener.BottomSheetClickListener" />
+
+        <import
+            alias="type"
+            type="com.nexters.fullstack.ui.adapter.source.ItemType" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_container"
+        android:onClick="@{() -> onClickEvent.onClick(type.DELETE)}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/text_white"
+            android:paddingTop="@dimen/spacing_20"
+            android:paddingStart="@dimen/spacing_12"
+            android:paddingBottom="@dimen/spacing_20"
+            android:paddingEnd="@dimen/spacing_12"
+            android:textSize="@dimen/b1"
+            android:text="@{item.title}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="라벨 삭제하기" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

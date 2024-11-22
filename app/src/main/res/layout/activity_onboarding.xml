@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.nexters.fullstack.presentaion.viewmodel.OnBoardingViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/depth4"
+        android:padding="@dimen/padding_default">
+
+        <TextView
+            android:id="@+id/tv_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/skip"
+            android:textSize="@dimen/b1"
+            android:textColor="@color/def_secondary"
+            android:translationZ="@dimen/spacing_10"
+            >
+
+        </TextView>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/tv_skip"
+            app:layout_constraintBottom_toTopOf="@id/tv_button"
+            >
+
+        </androidx.viewpager2.widget.ViewPager2>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_indicator"
+            app:layout_constraintBottom_toTopOf="@id/tv_main"
+            android:layout_marginBottom="@dimen/spacing_40"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_default"
+            android:layout_marginRight="@dimen/padding_default">
+
+            <ImageView
+                android:id="@+id/indicator1"
+                android:layout_width="@dimen/indicator_size"
+                android:layout_height="@dimen/indicator_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/bg_indicator"
+                >
+
+            </ImageView>
+            <ImageView
+                android:id="@+id/indicator2"
+                android:layout_width="@dimen/indicator_size"
+                android:layout_height="@dimen/indicator_size"
+                app:layout_constraintLeft_toRightOf="@id/indicator1"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="@dimen/spacing_8"
+                android:background="@drawable/bg_indicator"
+                >
+
+            </ImageView>
+            <ImageView
+                android:id="@+id/indicator3"
+                android:layout_width="@dimen/indicator_size"
+                android:layout_height="@dimen/indicator_size"
+                app:layout_constraintLeft_toRightOf="@id/indicator2"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="@dimen/spacing_8"
+                android:background="@drawable/bg_indicator"
+                >
+
+            </ImageView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/def_primary"
+            android:textSize="@dimen/h2"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tv_sub"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginBottom="@dimen/spacing_20"
+            android:layout_marginLeft="@dimen/padding_default"
+            android:layout_marginRight="@dimen/padding_default"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/def_secondary"
+            android:textSize="@dimen/b2"
+            app:layout_constraintBottom_toTopOf="@id/tv_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginBottom="@dimen/spacing_60"
+            android:layout_marginLeft="@dimen/padding_default"
+            android:layout_marginRight="@dimen/padding_default"/>
+
+        <TextView
+            android:id="@+id/tv_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/key_active"
+            android:text="@string/next"
+            android:textColor="@color/def_primary"
+            android:textSize="@dimen/b1"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/padding_default"
+            android:layout_marginRight="@dimen/padding_default"
+            >
+
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.nexters.fullstack.presentaion.viewmodel.LabelingViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@{vm.output.isEmptyLocalLabel() ? @android:color/black : @android:color/transparent}">
+
+
+        <!--        라벨이 없을 때        -->
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="@dimen/spacing_xx_large"
+            android:src="@drawable/ic_ico_empty_album"
+            android:visibility="@{vm.output.isEmptyLocalLabel() ? View.VISIBLE: View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/non_label_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/h3"
+            android:visibility="@{vm.output.isEmptyLocalLabel() ? View.VISIBLE: View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xx_large"
+            android:gravity="center"
+            android:text="@string/non_label_message"
+            android:textColor="@color/depth_1"
+            android:visibility="@{vm.output.isEmptyLocalLabel() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/tv_add_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xx_large"
+            android:background="@drawable/bg_key_active_radius_normal"
+            android:gravity="center"
+            android:padding="@dimen/spacing_normal"
+            android:text="@string/add_label"
+            android:textColor="@color/white"
+            android:visibility="@{vm.output.isEmptyLocalLabel() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toStartOf="@+id/add_label"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/add_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.70" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.30" />
+
+
+        <!--        라벨이 있을 때        -->
+
+        <TextView
+            android:id="@+id/tv_selected_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:textColor="@color/depth2"
+            android:textSize="12sp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/spacing_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="선택한 라벨 N" />
+
+        <HorizontalScrollView
+            android:id="@+id/rv_selected"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/spacing_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_selected_title">
+
+            <LinearLayout
+                android:id="@+id/select_linear_layout"
+                android:layout_width="wrap_content"
+                android:layout_gravity="start"
+                android:animateLayoutChanges="false"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:layout_height="match_parent" />
+        </HorizontalScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="@dimen/spacing_20"
+            android:id="@+id/rv_label"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{vm.output.isEmptyLocalLabel() ? View.GONE : View.VISIBLE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/select_button_guide_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_selected"
+            app:localLabels="@{vm.output.localLabels}" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/select_button_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <TextView
+            android:id="@+id/save_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginEnd="@dimen/spacing_x_large"
+            android:layout_marginBottom="@dimen/spacing_xxx_large"
+            android:background="@drawable/btn_select_mini"
+            android:gravity="center"
+            android:padding="@dimen/spacing_normal"
+            android:text="@string/all_selected_finish"
+            android:textColor="@color/white"
+            android:textSize="@dimen/b1"
+            android:visibility="@{vm.output.isEmptyLocalLabel() ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/select_button_guide_line" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

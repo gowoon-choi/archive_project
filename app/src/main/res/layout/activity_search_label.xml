@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.nexters.fullstack.presentaion.viewmodel.LabelingViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".ui.activity.SearchLabelActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout2"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/editText3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_search_et"
+                        android:drawableStart="@drawable/ic_icon_search"
+                        android:drawablePadding="@dimen/spacing_10"
+                        android:hint="@string/search_hint"
+                        android:inputType="text"
+                        android:onTextChanged="@{(text, start, before, count) -> vm.onTextChanged(text)}"
+                        android:padding="@dimen/spacing_10"
+                        android:text="@={vm.labelQuery}"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/cancel"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <FrameLayout
+                        android:id="@+id/cancel"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:onClick="@{() ->vm.input.clickCancelButton()}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/cancel"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                    </FrameLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.04" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.96" />
+
+        <TextView
+            android:id="@+id/tv_recently_search_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_20"
+            android:text="@string/recentlySearch_title"
+            android:textColor="@color/primary"
+            android:visibility="@{vm.labelQuery.empty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toStartOf="@+id/right_guide_line"
+            app:layout_constraintStart_toStartOf="@+id/left_guide_line"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
+            tools:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recently_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.labelQuery.empty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toStartOf="@+id/right_guide_line"
+            app:layout_constraintStart_toStartOf="@+id/left_guide_line"
+            app:layout_constraintTop_toBottomOf="@+id/tv_recently_search_title" />
+
+        <TextView
+            android:id="@+id/tv_my_label_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_40"
+            android:includeFontPadding="false"
+            android:text="@string/myLabel_title"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/b2"
+            app:layout_constraintEnd_toStartOf="@+id/tv_my_label_count"
+            app:layout_constraintStart_toStartOf="@+id/left_guide_line"
+            app:layout_constraintTop_toBottomOf="@+id/rv_recently_search" />
+
+        <TextView
+            android:id="@+id/tv_my_label_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="@dimen/spacing_40"
+            android:includeFontPadding="false"
+            android:text="@{String.valueOf(vm.output.localLabels.size())}"
+            android:textColor="@color/key_active"
+            android:textSize="@dimen/b2"
+            app:layout_constraintEnd_toStartOf="@+id/right_guide_line"
+            app:layout_constraintStart_toEndOf="@+id/tv_my_label_title"
+            app:layout_constraintTop_toBottomOf="@+id/rv_recently_search"
+            tools:text="N" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_my_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.labelQuery.empty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toStartOf="@+id/right_guide_line"
+            app:layout_constraintStart_toStartOf="@+id/left_guide_line"
+            app:layout_constraintTop_toBottomOf="@+id/tv_my_label_title"
+            app:localLabels="@{vm.output.localLabels}" />
+
+        <!--     label Query 값 존재 뷰  -->
+
+        <LinearLayout
+            android:id="@+id/linear_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_20"
+            android:orientation="horizontal"
+            android:visibility="@{vm.labelQuery.empty ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@+id/right_guide_line"
+            app:layout_constraintStart_toStartOf="@+id/left_guide_line"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
+
+            <TextView
+                android:id="@+id/tv_result_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/myLabel_title"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/b2" />
+
+            <TextView
+                android:id="@+id/tv_my_label_result_count"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:textColor="@color/key_active"
+                android:textSize="@dimen/b2"
+                tools:text="N" />
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.labelQuery.empty ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@+id/right_guide_line"
+            app:layout_constraintStart_toStartOf="@+id/left_guide_line"
+            app:layout_constraintTop_toBottomOf="@+id/linear_result" />
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.labelQuery.empty ? View.VISIBLE : View.GONE}"
+            app:constraint_referenced_ids="tv_my_label_title, tv_my_label_count" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

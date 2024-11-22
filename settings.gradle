@@ -1,0 +1,6 @@
+include ':feature'
+include ':data'
+include ':presentation'
+include ':domain'
+include ':app'
+rootProject.name = "CaptureBox"

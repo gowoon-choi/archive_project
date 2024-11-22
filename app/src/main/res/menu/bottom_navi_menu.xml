@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/label"
+        android:icon="@drawable/ic_reactive_labeling"
+        android:title="@string/labelling" />
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_reactive_home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/album"
+        android:icon="@drawable/ic_reactive_album"
+        android:title="@string/album" />
+</menu>

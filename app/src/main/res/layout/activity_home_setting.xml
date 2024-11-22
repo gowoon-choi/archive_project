@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/depth4"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingLeft="@dimen/padding_default">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/ic_back">
+
+            </ImageView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_title_height"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            android:background="@color/depth4"
+            android:paddingLeft="@dimen/padding_default"
+            android:paddingRight="@dimen/padding_default">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_appname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/h2"
+                    android:textStyle="bold"
+                    android:textColor="@color/def_primary"
+                    android:text="@string/app_name_ko"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_teamname"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    >
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_teamname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/b2"
+                    android:textColor="@color/def_inactive"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_appname"
+                    android:text="@string/team_name">
+
+                </TextView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_premium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/padding_default"
+                android:paddingRight="@dimen/padding_default"
+                android:paddingTop="@dimen/spacing_12"
+                android:paddingBottom="@dimen/spacing_12"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="@string/purchase_premium"
+                android:textSize="@dimen/b1"
+                android:textColor="@color/def_primary"
+                android:transitionName="@string/purchase_premium"
+                android:textStyle="bold"
+                android:background="@drawable/bg_premium_btn">
+
+            </TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/list_review"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_list_height"
+            app:layout_constraintTop_toBottomOf="@id/container_title"
+            android:layout_marginTop="@dimen/padding_default"
+            android:background="@color/depth4"
+            android:transitionName="@string/setting_review"
+            android:paddingLeft="@dimen/padding_default"
+            android:paddingRight="@dimen/padding_default">
+
+            <TextView
+                android:id="@+id/tv_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/b1"
+                android:textColor="@color/def_primary"
+                android:text="@string/setting_review">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/iv_review"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/ic_chevron_right">
+
+            </ImageView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/list_recommendation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_list_height"
+            android:transitionName="@string/setting_recommendation"
+            app:layout_constraintTop_toBottomOf="@id/list_review"
+            android:background="@color/depth4"
+            android:paddingLeft="@dimen/padding_default"
+            android:paddingRight="@dimen/padding_default">
+            <TextView
+                android:id="@+id/tv_recommendation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/b1"
+                android:textColor="@color/def_primary"
+                android:text="@string/setting_recommendation">
+
+            </TextView>
+            <ImageView
+                android:id="@+id/iv_recommendation"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/ic_chevron_right">
+
+            </ImageView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/list_guide"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_list_height"
+            android:transitionName="@string/setting_guide"
+            app:layout_constraintTop_toBottomOf="@id/list_recommendation"
+            android:layout_marginTop="@dimen/padding_default"
+            android:background="@color/depth4"
+            android:paddingLeft="@dimen/padding_default"
+            android:paddingRight="@dimen/padding_default"
+            >
+            <TextView
+                android:id="@+id/tv_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/b1"
+                android:textColor="@color/def_primary"
+                android:text="@string/setting_guide">
+
+            </TextView>
+            <ImageView
+                android:id="@+id/iv_guide"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/ic_chevron_right">
+
+            </ImageView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:transitionName="@string/setting_quick_labelling"
+            android:id="@+id/list_quick_labelling"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_list_height"
+            app:layout_constraintTop_toBottomOf="@id/list_guide"
+            android:background="@color/depth4"
+            android:paddingLeft="@dimen/padding_default"
+            android:paddingRight="@dimen/padding_default">
+            <TextView
+                android:id="@+id/tv_quick_labelling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/b1"
+                android:textColor="@color/def_primary"
+                android:text="@string/setting_quick_labelling">
+
+            </TextView>
+            <ImageView
+                android:id="@+id/iv_quick_labelling"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/ic_chevron_right">
+
+            </ImageView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:transitionName="@string/setting_feedback"
+            android:id="@+id/list_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_list_height"
+            app:layout_constraintTop_toBottomOf="@id/list_quick_labelling"
+            android:background="@color/depth4"
+            android:paddingLeft="@dimen/padding_default"
+            android:paddingRight="@dimen/padding_default">
+            <TextView
+                android:id="@+id/tv_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/b1"
+                android:textColor="@color/def_primary"
+                android:text="@string/setting_feedback">
+
+            </TextView>
+            <ImageView
+                android:id="@+id/iv_feedback"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/ic_chevron_right">
+
+            </ImageView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:transitionName="@string/setting_label_clear"
+            android:id="@+id/list_label_clear"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_list_large_height"
+            app:layout_constraintTop_toBottomOf="@id/list_feedback"
+            android:layout_marginTop="@dimen/padding_default"
+            android:background="@color/depth4"
+            android:paddingLeft="@dimen/padding_default"
+            android:paddingRight="@dimen/padding_default">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_label_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/b1"
+                    android:textColor="@color/red_active"
+                    android:text="@string/setting_label_clear"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_label_clear_description"
+                    app:layout_constraintLeft_toLeftOf="parent">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_label_clear_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/b3"
+                    android:textColor="@color/def_secondary"
+                    android:text="@string/setting_label_clear_description"
+                    app:layout_constraintTop_toBottomOf="@id/tv_label_clear"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    >
+
+                </TextView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <ImageView
+                android:id="@+id/iv_label_clear"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/ic_chevron_right">
+
+            </ImageView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

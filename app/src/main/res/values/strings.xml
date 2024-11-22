@@ -1,0 +1,110 @@
+<resources>
+    <string name="app_name">Labelary</string>
+    <string name="app_name_ko">레이블러리</string>
+
+    <!--    splash  -->
+    <string name="splash">스크린 샷<br />정리가 어렵다면</string>
+
+    <!--    Bottom Sheet    -->
+    <string name="labelling">라벨링</string>
+    <string name="home">홈</string>
+    <string name="album">라벨</string>
+
+    <!-- Titles -->
+    <string name="do_labelling">스크린샷 라벨 추가</string>
+
+    <string name="label">라벨</string>
+    <string name="my_label">내 라벨</string>
+
+    <!-- Buttons -->
+    <string name="done">완료</string>
+    <string name="labeling_done">라벨 추가 완료</string>
+    <string name="next">다음</string>
+    <string name="skip">건너뛰기</string>
+
+    <!--    Hints   -->
+    <string name="labeling_hint">라벨을 추가하면 라벨 앨범이 생성됩니다.</string>
+
+    <!-- Label -->
+    <string name="recommnd">추천</string>
+    <string name="label_add">생성</string>
+
+    <!--    LabelManagerFragment    -->
+    <string name="label_title">스크린샷 라벨링</string>
+    <string name="label_size">+%1$d</string>
+
+    <!--    Labeling Activity   -->
+    <string name="label_activity_title">스크린샷 라벨 추가</string>
+
+    <string name="all_selected_finish">확인</string>
+    <string name="request_finish">라벨링을 취소하고 나가시겠어요?</string>
+    <string name="all_exit">나가기</string>
+    <string name="all_continue">계속하기</string>
+    <string name="selected_label">선택된 라벨</string>
+
+    <string name="new_label_hint">새 라벨 이름 입력</string>
+    <string name="label_update">라벨 수정</string>
+
+    <string name="placeholder_label_search">라벨을 검색하거나 추가해보세요.</string>
+
+    <string name="label_select_title">라벨 색 선택하기</string>
+
+
+    <string name="image_count">%1$d 개</string>
+
+    <!--    SearchLabel Activity    -->
+    <string name="search_hint">스크린샷 검색</string>
+    <string name="cancel">취소</string>
+    <string name="recentlySearch_title">최근 검색한 라벨</string>
+    <string name="myLabel_title">라벨 목록</string>
+    <!--    라벨이 없을 때    -->
+    <string name="non_label_title">라벨 앨범이 없습니다.</string>
+    <string name="non_label_message">"라벨 앨범을 추가해서 \n스크린샷에 라벨 추가를 할 수 있습니다."</string>
+    <string name="add_label">라벨 앨범 추가하기</string>
+    <string name="add_label_hint">새 라벨을 입력해주세요</string>
+    <string name="add_label_color">라벨 컬러 선택</string>
+    <string name="add_label_text">라벨을 추가하면 라벨 앨범이 생성됩니다.</string>
+    <string name="add_label_finish">라벨 추가 완료</string>
+
+    <!--    labelling outside   -->
+    <string name="no_label_title">라벨이 없습니다.</string>
+    <string name="no_label_message">라벨을 생성하여 스크린샷에 \n라벨을 추가해 보세요.</string>
+    <string name="add_label_button">라벨 생성하기</string>
+
+    <!--    BottomSheetDialog   -->
+    <string name="delete">삭제</string>
+    <string name="title">라벨을 삭제하시겠어요?</string>
+    <string name="message">해당 라벨을 삭제해도 라벨이 추가된 스크린샷은 삭제되지 않습니다.</string>
+
+    <!--    Home   -->
+    <string name="empty_favorite">스크린샷을 \n즐겨찾기 해보세요.</string>
+    <string name="empty_screenshot">스크린샷을 \n캡쳐해보세요.</string>
+    <string name="selection">선택</string>
+    <string name="home_search">스크린샷 검색</string>
+    <string name="search_btn">스크린샷 검색하기</string>
+    <string name="result_title">검색한 스크린샷</string>
+    <string name="edit">편집</string>
+    <string name="search_result">검색 결과</string>
+    <string name="screenshot_no_result">검색 결과가 없습니다.</string>
+
+    <!--  Settings  -->
+    <string name="team_name">Team Fullstack</string>
+    <string name="purchase_premium">프리미엄 구매</string>
+    <string name="setting_review">앱스토어에 리뷰쓰기</string>
+    <string name="setting_recommendation">친구에게 추천하기</string>
+    <string name="setting_guide">이용방법 보기</string>
+    <string name="setting_quick_labelling">빠른 라벨링 설정하기</string>
+    <string name="setting_feedback">피드백 보내기</string>
+    <string name="setting_label_clear">라벨 초기화하기</string>
+    <string name="setting_label_clear_description">라벨 내역이 초기화되며, 스크린샷은 삭제되지 않습니다.</string>
+
+    <!--    LabelSelectFragment     -->
+    <string name="label_select_fragment_title">추가한 라벨 %1$d</string>
+
+    <!--    MyAlbumFragment     -->
+    <string name="my_album_fragment_create_label_title">라벨 생성하기</string>
+    <string name="my_album_fragment_create_description">라벨을 생성하여\n 스크린샷에 라벨을 추가해보세요.</string>
+
+    <!--    DetailAlbumActivity     -->
+    <string name="detail_album_activity_title">%1$s년 %2$s월 %3$s일</string>
+</resources>
